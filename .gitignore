@@ -59,3 +59,9 @@ typings/
 
 # next.js build output
 .next
+
+
+bch.venv/
+bchvpn_web/node_modules/
+.pyc
+.swp
