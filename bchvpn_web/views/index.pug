@@ -1,0 +1,34 @@
+extends layout
+
+block content
+  script.
+    function handleSuccessfulPayment (payment) {
+      unlockContent();
+    }
+    function handleFailedPayment (error) {
+      alert("Sorry, the payment did not process correctly.")
+    }
+    function unlockContent () {
+      document.getElementById("unlockable").classList.toggle("unlocked");
+    }
+  h1 Bitcoin Cash VPN
+  // Free content
+  p Get an hour of VPN access, paying with Bitcoin Cash!
+  em Slide the Money Button to reveal your OpenVPN credentials.
+  p
+  // Money Button
+  .money-button(data-to='487' data-amount='1' data-currency='EUR' data-label='per hour' data-client-identifier='b18c161050e76984ed6ddd659d6b81cd' data-button-id='1540645104364' data-button-data='{"user": "' + user + '", "pass": "' + pass + '"}' data-type='buy' data-on-payment='handleSuccessfulPayment' data-on-error='handleFailedPayment' data-dev-mode='false')
+  p
+  // Hidden content
+  #unlockable
+    p Here are your credentials:
+    ul
+      li Username: #{user}
+      li Password: #{pass}
+    p
+    | Use them with 
+    a(href='files/BCHVPN.ovpn') this
+    |  OpenVPN configuration.
+  // Money Button script
+  script(src='https://www.moneybutton.com/moneybutton.js')
+
